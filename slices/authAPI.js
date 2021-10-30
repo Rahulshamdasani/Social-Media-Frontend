@@ -4,7 +4,7 @@ import { PURGE } from "redux-persist"
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ 
-    baseUrl: 'http://localhost:8000/auth/',
+    baseUrl: 'https://koobecaff.herokuapp.com/auth/',
     prepareHeaders: (headers, { getState }) => {
       const isAuthenticated = getState().auth.isAuthenticated
       const token = getState().auth.token
@@ -109,9 +109,9 @@ export const authApi = createApi({
       // transformResponse: (response) => response.data,
       query() {
         // const { redirect_uri } = data
-        const redirect_uri = 'http://localhost:8000/google'
+        const redirect_uri = 'https://koobecaff.herokuapp.com/google'
         return {
-          url: 'o/google-oauth2/?redirect_uri=http://localhost:8000/google',
+          url: 'o/google-oauth2/?redirect_uri=https://koobecaff.herokuapp.com/google',
           method: 'GET',
           body: {
             redirect_uri: `${redirect_uri}`
