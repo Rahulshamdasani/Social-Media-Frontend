@@ -36,3 +36,5 @@ export const {
   setProfileInfo
 } = slice.actions
 export default slice.reducer
+
+
