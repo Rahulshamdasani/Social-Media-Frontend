@@ -5,6 +5,7 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ 
     baseUrl: 'http://localhost:8000/auth/',
+    mode: 'no-cors',
     prepareHeaders: (headers, { getState }) => {
       const isAuthenticated = getState().auth.isAuthenticated
       const token = getState().auth.token
@@ -95,7 +96,6 @@ export const authApi = createApi({
         return {
           url: 'jwt/create/',
           headers: {
-            mode: 'no-cors',
             'Content-Type': 'application/json'
           },
           method: 'POST',
@@ -131,7 +131,6 @@ export const authApi = createApi({
         return {
           url: `o/google-oauth2/?${formData}`,
           headers: {
-            mode: 'no-cors',
             'Content-Type': 'application/x-www-form-urlencoded'
           },
           method: 'POST',
