@@ -30,7 +30,6 @@ export const authApi = createApi({
         return {
           url: 'users/',
           method: 'POST',
-          mode: 'no-cors',
           body: {
             email: `${email}`,
             password: `${password}`,
@@ -46,7 +45,6 @@ export const authApi = createApi({
           url: `users/activation/`,
           // url: `users/activate/${uid}/${token}`,
           method: 'POST',
-          mode: 'no-cors',
           body: {
             uid: `${uid}`,
             token: `${token}`,
@@ -60,7 +58,6 @@ export const authApi = createApi({
         return {
           url: '/users/resend_activation/',
           method: 'POST',
-          mode: 'no-cors',
           body: { 
             email: `${email}`,
           }
@@ -74,7 +71,6 @@ export const authApi = createApi({
         return {
           url: 'users/reset_password/',
           method: 'POST',
-          mode: 'no-cors',
           body: {
             email: `${email}`
           }
@@ -89,7 +85,6 @@ export const authApi = createApi({
         return {
           url: 'users/reset_password_confirm/',
           method: 'POST',
-          mode: 'no-cors',
           body: { uid, token, new_password, re_new_password }
         }
       }
@@ -103,7 +98,6 @@ export const authApi = createApi({
             'Content-Type': 'application/json'
           },
           method: 'POST',
-          mode: 'no-cors',
           body: {
             email: `${email}`,
             password: `${password}`
@@ -119,7 +113,6 @@ export const authApi = createApi({
         return {
           url: 'o/google-oauth2/?redirect_uri=https://koobecaff.herokuapp.com/google',
           method: 'GET',
-          mode: 'no-cors',
           body: {
             redirect_uri: `${redirect_uri}`
           }
@@ -140,12 +133,6 @@ export const authApi = createApi({
             'Content-Type': 'application/x-www-form-urlencoded'
           },
           method: 'POST',
-          mode: 'no-cors',
-
-
-
-
-
           // body: {}
         }
       }
