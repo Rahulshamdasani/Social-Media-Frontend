@@ -1,9 +1,19 @@
 {
+  "/[google]": "pages/[google].html",
   "/_app": "pages/_app.js",
+  "/activation/[uid]/[token]": "pages/activation/[uid]/[token].html",
+  "/api/hello": "pages/api/hello.js",
+  "/": "pages/index.html",
+  "/login": "pages/login.html",
+  "/newpost": "pages/newpost.html",
+  "/password/reset/confirm/[uid]/[token]": "pages/password/reset/confirm/[uid]/[token].html",
+  "/profile/[email]": "pages/profile/[email].html",
+  "/profile/edit/[email]": "pages/profile/edit/[email].html",
+  "/resendactivationemail": "pages/resendactivationemail.html",
+  "/resetpassword": "pages/resetpassword.html",
+  "/signup": "pages/signup.html",
+  "/signuplanding": "pages/signuplanding.html",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/signup": "pages/signup.js",
-  "/signuplanding": "pages/signuplanding.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
+  "/404": "pages/404.html"
 }
