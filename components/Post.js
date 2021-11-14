@@ -7,6 +7,7 @@ import { useState, useEffect } from "react"
 import router, { useRouter } from "next/router"
 import { useDispatch, useSelector } from "react-redux"
 import { useDeletePostMutation } from "slices/postsAPI"
+import styles from "../components/Post.module.scss"
 
 
 export default function Post({ post, isOwner }) {
@@ -44,7 +45,7 @@ export default function Post({ post, isOwner }) {
   
   return (
     <>
-      <Card>
+      <Card className={styles.postCard}>
         <Card.Header as="h5">
           <ListGroup horizontal>
             <ListGroup.Item>{post.postAuthor}</ListGroup.Item>
@@ -61,7 +62,7 @@ export default function Post({ post, isOwner }) {
                 ) : ( "" )
               }
             </ListGroup.Item>
-            <ListGroup.Item>...</ListGroup.Item>
+            {/* <ListGroup.Item>...</ListGroup.Item> */}
             { isOwner === true &&
               <ListGroup.Item>
                 <Button variant='danger' onClick={handleDeletePost}>

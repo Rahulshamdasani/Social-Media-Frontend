@@ -6,6 +6,7 @@ import Link from "next/dist/client/link";
 import styles from "./TopNav.module.scss"
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+import DarkModeButton from "../DarkModeButton/DarkModeButton";
 
 export default function TopNav() {
   
@@ -36,6 +37,9 @@ export default function TopNav() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <>
+
+          <DarkModeButton />
+
           {user && isAuthenticated ? (
             <Navbar.Text>
               <Link href={`/profile/${user.userdata.email}`} passHref>
