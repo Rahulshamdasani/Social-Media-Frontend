@@ -5,15 +5,6 @@ export const postsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:8000/posts/",
     prepareHeaders: (headers, { getState }) => {
-      // const access = getState().auth.access
-
-      // if (access) {
-      // headers.set("Authentication", `Bearer ${access}`)
-      //   // headers.set("Authentication", `JWT ${access}`)
-      //   headers.set("Authentication", `Bearer ${access}`)
-      //   headers.set("Accept", "application/json")
-      //   headers.set("Content-Type", "application/json")
-      // }
       headers.set("Accept", "application/json");
       headers.set("Content-Type", "application/json");
       return headers;
@@ -31,12 +22,7 @@ export const postsApi = createApi({
     }),
     createPost: builder.mutation({
       query(data) {
-        // console.log(`data: ${data}`)
         const { post_author, post_text, access_token } = data;
-        // const body = JSON.stringify({ post_author, post_text });
-        // console.log(`accesstoken in RTKQ: ${access_Token}`)
-        // console.log(`postauthor in RTKQ: ${post_Author}`)
-        // console.log(`posttext in RTKQ: ${post_Text}`)
         return {
           url: "create/",
           headers: {
@@ -55,7 +41,7 @@ export const postsApi = createApi({
     }),
     deletePost: builder.mutation({
       query(data) {
-        const { postIDtoDelete, access_Token } = data;
+        const { postIDtoDelete, access_Token } = data
         return {
           url: `delete/${postIDtoDelete}/`,
           headers: {
@@ -66,6 +52,9 @@ export const postsApi = createApi({
       },
       invalidatesTags: ["posts"],
     }),
+    
+    // searchPosts: query(search_term) => `search/${search_term}/`,
+    
     // getPost: builder.query({
     //   query(data) {
     //     const { postID } = data;
@@ -84,4 +73,5 @@ export const {
   useGetAllPostsQuery,
   useCreatePostMutation,
   useDeletePostMutation,
+  useSearchPostsQuery
 } = postsApi;

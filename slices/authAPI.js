@@ -12,9 +12,7 @@ export const authApi = createApi({
       const access = getState().auth.access
       const refresh = getState().auth.refresh
       if (access && refresh) {
-        // headers.set("authentication", `Bearer ${token}`)
-        // headers.set("Authentication", `JWT ${access}`)
-        headers.set("Authentication", `Bearer ${access}`)
+        headers.set("Authorization", `JWT ${access}`)
         headers.set("Accept", "application/json")
         headers.set("Content-Type", "application/json")
       }
@@ -80,8 +78,8 @@ export const authApi = createApi({
     resetPasswordConfirm: builder.mutation({
       query(data) {
         const {uid, token, new_password, re_new_password} = data
-        console.log('################')
-        console.log(typeof(data))
+        // console.log('################')
+        // console.log(typeof(data))
         return {
           url: 'users/reset_password_confirm/',
           method: 'POST',

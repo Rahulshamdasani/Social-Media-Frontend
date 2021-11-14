@@ -3,9 +3,11 @@ import { setupListeners } from "@reduxjs/toolkit/query/react";
 import { authApi } from "slices/authAPI";
 import { profileApi } from "slices/profileAPI";
 import { postsApi } from "slices/postsAPI";
+import { searchApi } from "slices/searchAPI";
 import auth from 'slices/authSlice';
 import profile from 'slices/profileSlice'
 import posts from 'slices/postsSlice'
+import search from 'slices/searchSlice'
 
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
@@ -19,9 +21,11 @@ const reducers = combineReducers({
   [authApi.reducerPath]: authApi.reducer,
   [profileApi.reducerPath]: profileApi.reducer,
   [postsApi.reducerPath]: postsApi.reducer,
+  [searchApi.reducerPath]: searchApi.reducer,
   auth,
   profile,
-  posts
+  posts,
+  search
 })
 
 const persistConfig = {
@@ -32,9 +36,11 @@ const persistConfig = {
     authApi.reducerPath,
     profileApi.reducerPath,
     postsApi.reducerPath,
+    searchApi.reducerPath,
     auth, 
     profile,
-    posts
+    posts,
+    search
   ],
 }
 
@@ -54,6 +60,7 @@ export const makeStore = () =>
         .concat(authApi.middleware)
         .concat(profileApi.middleware)
         .concat(postsApi.middleware)
+        .concat(searchApi.middleware)
     
   })
   

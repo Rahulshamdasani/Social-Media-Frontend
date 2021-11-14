@@ -7,6 +7,7 @@ import styles from "./TopNav.module.scss"
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import DarkModeButton from "../DarkModeButton/DarkModeButton";
+import SearchBar from "../SearchBar/SearchBar";
 
 export default function TopNav() {
   
@@ -37,6 +38,8 @@ export default function TopNav() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <>
+
+          <SearchBar />
 
           <DarkModeButton />
 

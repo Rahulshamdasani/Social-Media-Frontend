@@ -2,7 +2,7 @@ import { Button, Card, ListGroup } from "react-bootstrap"
 import Link from "next/dist/client/link"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart as faEmptyHeart, faComment } from '@fortawesome/free-regular-svg-icons'
-import { faHeart as faFullHeart, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as faFullHeart, faTimes, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from "react"
 import router, { useRouter } from "next/router"
 import { useDispatch, useSelector } from "react-redux"
@@ -48,7 +48,18 @@ export default function Post({ post, isOwner }) {
       <Card className={styles.postCard}>
         <Card.Header as="h5">
           <ListGroup horizontal>
-            <ListGroup.Item>{post.postAuthor}</ListGroup.Item>
+            {/* <ListGroup.Item>{post.postAuthor}</ListGroup.Item> */}
+            <ListGroup.Item>
+                <Link href={`/profile/${post.postAuthorEmail}/`}>
+                  <div>
+                    <FontAwesomeIcon icon={faUserCircle}/>
+                    {"   " + post.postAuthorDisplayName}
+                  </div>
+                </Link>
+            </ListGroup.Item>
+            <ListGroup.Item style={{fontSize: "1rem",}} disabled>
+              {post.postAuthorEmail}
+            </ListGroup.Item>
             <ListGroup.Item>
               {new Date(post.created_at).toUTCString().substring(8,11)}
               <span>,&ensp;</span>

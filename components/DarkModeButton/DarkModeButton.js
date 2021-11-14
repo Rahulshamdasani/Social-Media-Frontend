@@ -18,23 +18,23 @@ export default function DarkModeButton() {
         {darkMode ? (
           <>
             <Button
-              variant="outline-dark" 
+              // variant="outline-dark" 
               onClick={handleThemeToggle}
               className={styles.darkModeButton}
             >
-              <span>Dark  </span>
-              <FontAwesomeIcon icon={faMoon} />
+              {/* <span>Dark  </span> */}
+              <FontAwesomeIcon icon={faMoon} size={"lg"} className={styles.moonIcon} />
             </Button>
           </>
           ) : (
           <>
             <Button
-              variant="outline-dark" 
+              // variant="outline-dark" 
               onClick={handleThemeToggle}
               className={styles.lightModeButton}
             >
-              <span>Light  </span>
-              <FontAwesomeIcon icon={faSun} />
+              {/* <span>Light  </span> */}
+              <FontAwesomeIcon icon={faSun} size={"lg"} className={styles.sunIcon} />
             </Button>
           </>
         )}

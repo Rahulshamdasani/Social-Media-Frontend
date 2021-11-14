@@ -21,7 +21,7 @@ export default function NewPost() {
     }
   ] = useCreatePostMutation()
 
-  let post_author = currentUser.userdata.email ?? null
+  let post_author = currentUser.userdata.email ?? ""
   useEffect(() => {
     if (currentUser !== undefined && currentUser !== null) {
       post_author = currentUser.userdata.email
