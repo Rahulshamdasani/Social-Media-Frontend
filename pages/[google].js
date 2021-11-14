@@ -66,7 +66,7 @@ export default function Google() {
     
     const formData = Object.keys(details).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(details[key])).join('&');
     try {
-      const request = await fetch(`http://localhost:8000/auth/o/google-oauth2/?${formData}`,{
+      const request = await fetch(`https://koobecaff.herokuapp.com/auth/o/google-oauth2/?${formData}`,{
       headers: {
         'Content-Type': 'application/json'
       },

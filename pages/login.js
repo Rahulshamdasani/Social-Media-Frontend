@@ -45,7 +45,7 @@ export default function Login() {
   
   const handleLoadUser = async (access) => {
     try {
-      const response = await fetch('http://localhost:8000/auth/users/me/', {
+      const response = await fetch('https://koobecaff.herokuapp.com/auth/users/me/', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
