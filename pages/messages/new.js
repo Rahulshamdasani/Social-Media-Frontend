@@ -35,8 +35,8 @@ export default function NewMessage() {
   ] = useCreateNewDMMutation()
 
   useEffect(() => {
-    if (currentUser == null) {
-      router.push('/login')
+    if (currentUser === null) {
+      router.push('/login',undefined, {shallow=true})
     }
   }, [currentUser])
 
@@ -58,6 +58,7 @@ export default function NewMessage() {
   const handleNewMessageSend = async () => {
     try {
       await createNewDM({ message, receiver, access_token })
+      router.push('/messages',undefined, {shallow=true})
     } catch (error) {
       console.log(error)
     }
