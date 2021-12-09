@@ -58,7 +58,7 @@ export default function NewMessage() {
   const handleNewMessageSend = async () => {
     try {
       await createNewDM({ message, receiver, access_token })
-      router.push('/messages',undefined, {shallow=true})
+      router.push('/messages',undefined, {shallow:true})
     } catch (error) {
       console.log(error)
     }
