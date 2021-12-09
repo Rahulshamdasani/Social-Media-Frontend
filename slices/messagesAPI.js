@@ -42,7 +42,8 @@ export const messagesApi = createApi({
           }
 
         }
-      }
+      },
+      invalidatesTags: ["messages"],
     }),
     getConversationDetail: builder.query({
       query(data) {
