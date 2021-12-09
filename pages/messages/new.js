@@ -35,8 +35,8 @@ export default function NewMessage() {
   ] = useCreateNewDMMutation()
 
   useEffect(() => {
-    if (currentUser === null) {
-      router.push('/login',undefined, {shallow=true})
+    if (currentUser == null) {
+      router.push('/login',undefined, {shallow = true})
     }
   }, [currentUser])
 
