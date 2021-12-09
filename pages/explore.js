@@ -28,7 +28,7 @@ export default function Explore() {
   return (
     <Tabs defaultActiveKey="users" id="uncontrolled-tab-example" className="mb-3 mt-4">
 
-      <Tab eventKey="users" title="Users" style={{ display: 'flex', }}>
+      <Tab eventKey="users" title="Users" style={{ display: 'flex',flexWrap:'wrap', }}>
         {allProfilesIsLoading && <Spinner animation="border" variant="primary" />}
         {allProfilesIsError && <Alert variant="danger">{allProfilesError.message ?? "error loading all profiles"}</Alert>}
         {allProfilesIsSuccess && allProfilesData.profiles.map(profile => (
