@@ -3,9 +3,17 @@ import { setupListeners } from "@reduxjs/toolkit/query/react";
 import { authApi } from "slices/authAPI";
 import { profileApi } from "slices/profileAPI";
 import { postsApi } from "slices/postsAPI";
+import { searchApi } from "slices/searchAPI";
+import { messagesApi } from "slices/messagesAPI";
+import { pageApi } from "slices/pageApi";
+import { eventApi } from "slices/eventApi";
 import auth from 'slices/authSlice';
 import profile from 'slices/profileSlice'
 import posts from 'slices/postsSlice'
+import search from 'slices/searchSlice'
+import messages from 'slices/messagesSlice'
+import page from "slices/pageSlice";
+import event from "slices/eventSlice";
 
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
@@ -19,9 +27,17 @@ const reducers = combineReducers({
   [authApi.reducerPath]: authApi.reducer,
   [profileApi.reducerPath]: profileApi.reducer,
   [postsApi.reducerPath]: postsApi.reducer,
+  [searchApi.reducerPath]: searchApi.reducer,
+  [messagesApi.reducerPath]: messagesApi.reducer,
+  [pageApi.reducerPath]: pageApi.reducer,
+  [eventApi.reducerPath]: eventApi.reducer,
   auth,
   profile,
-  posts
+  posts,
+  search,
+  messages,
+  page,
+  event
 })
 
 const persistConfig = {
@@ -32,9 +48,17 @@ const persistConfig = {
     authApi.reducerPath,
     profileApi.reducerPath,
     postsApi.reducerPath,
+    searchApi.reducerPath,
+    messagesApi.reducerPath,
+    pageApi.reducerPath,
+    eventApi.reducerPath,
     auth, 
     profile,
-    posts
+    posts,
+    search,
+    messages,
+    page,
+    event
   ],
 }
 
@@ -54,6 +78,10 @@ export const makeStore = () =>
         .concat(authApi.middleware)
         .concat(profileApi.middleware)
         .concat(postsApi.middleware)
+        .concat(searchApi.middleware)
+        .concat(messagesApi.middleware)
+        .concat(pageApi.middleware)
+        .concat(eventApi.middleware)
     
   })
   

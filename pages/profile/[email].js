@@ -7,6 +7,7 @@ import { setProfileInfo } from "slices/profileSlice";
 import { setPosts } from "slices/postsSlice";
 import { useGetPostsByUserQuery } from "slices/postsAPI";
 import Post from "@/components/Post";
+import Link from "next/dist/client/link";
 
 export default function Profile() {
 
@@ -18,6 +19,8 @@ export default function Profile() {
   const [sameUser, setSameUser] = useState(false)
 
   useEffect(() => {
+
+
 
     if (email && user !== null && email === user.userdata.email) {
       setSameUser(true)
@@ -64,26 +67,30 @@ export default function Profile() {
 
   return (
     <>
-      <div>
+      {/* <div>
         <h3>Profile Page</h3>
       </div>
-      <br />
+      <br /> */}
 
-      {sameUser && 
-        <Button onClick={handleEditButton}>Edit Profile</Button>
-      }
+      
 
       <>
       {isLoading || isFetching || data === undefined ? 
         (
           <Spinner animation="border" variant="success" />
         ) : (
-          <Card>
+          <Card className={"mt-4"}>
             {/* <Card.Img variant="top" src="holder.js/100px180?text=Image cap" /> */}
+            {sameUser && 
+              <Card.Header>
+                <Button onClick={handleEditButton} style={{ position: 'right', }}>Edit Profile</Button>
+              </Card.Header>
+            }
+
             <Card.Body>
               <Card.Title>{data.profile.display_name}</Card.Title>
               <Card.Text>
-                <small>bio:</small>
+                <small>Bio:</small>
                 <br />
                 {data.profile.bio}
               </Card.Text>
@@ -91,20 +98,26 @@ export default function Profile() {
             <ListGroup className="list-group-flush">
               
               <ListGroupItem>
-                <small>first name:</small>
+                <small>First Name:</small>
                 <br />
                 {data.profile.first_name}
               </ListGroupItem>
               <ListGroupItem>
-                <small>first name:</small>
+                <small>Last Name:</small>
                 <br />
                 {data.profile.last_name}
               </ListGroupItem>
+
+              {!sameUser && (
+                <ListGroupItem>
+                  <Link href={`/messages/direct/${data.profile.email}`} passHref>
+                    <Button variant="primary">
+                      Send Message
+                    </Button>
+                  </Link>
+                </ListGroupItem>
+              )}
             </ListGroup>
-            <Card.Body>
-              <Card.Link href="#">Card Link</Card.Link>
-              <Card.Link href="#">Another Link</Card.Link>
-            </Card.Body>
           </Card>
         )
       }
@@ -118,13 +131,16 @@ export default function Profile() {
           <Spinner animation="border" variant="success" />
         ) : (
           <>
-            <h3>Posts from {email}</h3>
+            <h3>Posts from {data.profile.display_name}</h3>
             {postsData.posts.map(post => (
               <Post key={post.id} post={post} isOwner={sameUser}/>
             ))}
           </>
         )
       }
+      {postsIsError && (
+        <h5>No posts found</h5>
+      )}
       </>
 
     </>

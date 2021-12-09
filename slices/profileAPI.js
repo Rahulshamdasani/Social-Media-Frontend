@@ -47,8 +47,12 @@ export const profileApi = createApi({
         }
       }
     }),
+    getAllProfiles: builder.query({
+      query: () => `all/all`,
+    }),
+
   }),
-  refetchOnMountOrArgChange: true
+  refetchOnMountOrArgChange: true,
 
 })
 
@@ -59,6 +63,7 @@ export const profileApi = createApi({
 //    use<nameOfQuery>Query
 export const { 
   useGetProfileByEmailQuery,
-  useUpdateProfileMutation
+  useUpdateProfileMutation,
+  useGetAllProfilesQuery,
 
 } = profileApi

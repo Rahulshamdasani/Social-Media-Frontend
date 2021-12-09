@@ -20,8 +20,16 @@ export default function NewPost() {
       isError: createPostIsError,
     }
   ] = useCreatePostMutation()
-
-  let post_author = currentUser.userdata.email ?? null
+  
+  /*
+  useEffect(() => {
+    if (currentUser === null | currentUser === undefined) {
+        router.push("/login", undefined, { shallow: true })
+      }
+  }, [currentUser])
+  */
+  
+  var post_author = ""
   useEffect(() => {
     if (currentUser !== undefined && currentUser !== null) {
       post_author = currentUser.userdata.email
@@ -31,13 +39,13 @@ export default function NewPost() {
   useEffect(() => {
     console.log(`access_token: ${access_token}`)
   }, [access_token])
-
+  
   const [createPostFormData, setCreatePostFormData] = useState({
     // post_author: "",
     post_text: "",
   })
   const { post_text } = createPostFormData
-
+  
   const handleCreatePostFormDataChange = (e) => {
     setCreatePostFormData({
       ...createPostFormData,
@@ -51,22 +59,30 @@ export default function NewPost() {
     }
   }, [createPostIsSuccess])
 
+  /*
   useEffect(() => {
     if (!currentUser) {
       alert("You must be logged in to create a post!");
       router.push("/login", undefined, { shallow: true })
     }
   }, [currentUser])
+  */
 
+  
   useEffect(() => {
     if (createPostIsError) {
       // alert("Error creating post!");
       console.log(createPostError)
     }
   }, [createPostIsError])
-
+  
   const handleCreatePost = async () => {
     try {
+
+      if (post_text.length < 1) {
+        alert("Post must contain some text!")
+        return
+      }
       console.log(`post_author: ${post_author}`)
       console.log(`post_text: ${post_text}`)
       console.log(`accesss_token: ${access_token}`)
@@ -128,7 +144,7 @@ export default function NewPost() {
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
               <Form.Control 
-                placeholder='whats on your mind?' 
+                placeholder='What is on your mind?' 
                 as="textarea" 
                 rows={3}
                 onChange={handleCreatePostFormDataChange}

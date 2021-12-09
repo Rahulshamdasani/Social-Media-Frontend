@@ -1,4 +1,4 @@
-import { Button, Spinner } from "react-bootstrap";
+import { Button, Spinner, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -16,7 +16,7 @@ export default function resendActivation() {
   // const dispatch = useDispatch()
   const router = useRouter()
   
-  const [resendActivationEmail, { isSuccess, isLoading, isError, data }] = useResendActivationEmailMutation()
+  const [resendActivationEmail, { isSuccess, isLoading, isError, data, error }] = useResendActivationEmailMutation()
 
   const [resendActivationFormData, setResendActivationFormData] = useState({
     email: ''
@@ -53,6 +53,9 @@ export default function resendActivation() {
       <div>
         <h3>Resend Email Activation Link</h3>
       </div>
+
+      {isSuccess && <Alert variant="success">Success! Check your email</Alert>}
+      {isError && <Alert variant="danger">{"Check you typed the correct email, or are not already an active member"}</Alert>}
 
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
