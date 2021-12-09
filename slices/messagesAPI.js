@@ -43,7 +43,7 @@ export const messagesApi = createApi({
 
         }
       },
-      invalidatesTags: ["messages"],
+      invalidatesTags: ["conversations"],
     }),
     getConversationDetail: builder.query({
       query(data) {
