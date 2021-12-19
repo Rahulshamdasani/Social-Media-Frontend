@@ -5,21 +5,12 @@ export const postsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://koobecaff.herokuapp.com/posts/",
     prepareHeaders: (headers, { getState }) => {
-      // const access = getState().auth.access
-
-      // if (access) {
-      // headers.set("Authentication", `Bearer ${access}`)
-      //   // headers.set("Authentication", `JWT ${access}`)
-      //   headers.set("Authentication", `Bearer ${access}`)
-      //   headers.set("Accept", "application/json")
-      //   headers.set("Content-Type", "application/json")
-      // }
       headers.set("Accept", "application/json");
       headers.set("Content-Type", "application/json");
       return headers;
     },
   }),
-  tagTypes: ["posts"],
+  tagTypes: ["posts","todaysPosts"],
   endpoints: (builder) => ({
     getAllPosts: builder.query({
       query: () => "",
@@ -31,12 +22,7 @@ export const postsApi = createApi({
     }),
     createPost: builder.mutation({
       query(data) {
-        // console.log(`data: ${data}`)
         const { post_author, post_text, access_token } = data;
-        // const body = JSON.stringify({ post_author, post_text });
-        // console.log(`accesstoken in RTKQ: ${access_Token}`)
-        // console.log(`postauthor in RTKQ: ${post_Author}`)
-        // console.log(`posttext in RTKQ: ${post_Text}`)
         return {
           url: "create/",
           headers: {
@@ -51,11 +37,11 @@ export const postsApi = createApi({
           }
         };
       },
-      invalidatesTags: ["posts"],
+      invalidatesTags: ["posts","todaysPosts"],
     }),
     deletePost: builder.mutation({
       query(data) {
-        const { postIDtoDelete, access_Token } = data;
+        const { postIDtoDelete, access_Token } = data
         return {
           url: `delete/${postIDtoDelete}/`,
           headers: {
@@ -64,24 +50,23 @@ export const postsApi = createApi({
           method: "DELETE",
         };
       },
-      invalidatesTags: ["posts"],
+      invalidatesTags: ["posts", "todaysPosts"],
     }),
-    // getPost: builder.query({
-    //   query(data) {
-    //     const { postID } = data;
-    //     return {
-    //       url: `${postID}`,
-    //     };
-    //   },
-    // }),
+    getTodaysPosts: builder.query({
+      query: () => "hot/today",
+      providesTags: ["todaysPosts"],
+    }),
+    
     refetchOnMountOrArgChange: true,
-
+    
   }),
-});
+})
 
 export const {
   useGetPostsByUserQuery,
   useGetAllPostsQuery,
   useCreatePostMutation,
   useDeletePostMutation,
+  useSearchPostsQuery,
+  useGetTodaysPostsQuery,
 } = postsApi;

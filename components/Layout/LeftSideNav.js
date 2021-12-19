@@ -4,7 +4,7 @@ import { Nav, Button } from 'react-bootstrap'
 import Link from "next/dist/client/link";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAddressBook, faAt, faGem, faHome, faUser, faUsers, faSearch, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faAddressBook, faAt, faGem, faHome, faUser, faUsers, faSearch, faEnvelope, faNewspaper } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './LeftSideNav.module.scss'
 import { useRouter } from 'next/dist/client/router';
@@ -16,6 +16,7 @@ export default function LeftSideNav() {
   const router = useRouter();
 
   const user = useSelector(state => state.auth.user)
+
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
 
   const authLinks = () => (
@@ -43,6 +44,28 @@ export default function LeftSideNav() {
       </Nav.Item>
 
       <Nav.Item as="li" className={styles.sidenavItem}>
+        <Link href={`/mypages/${user.userdata.id}`} passHref>
+          <Nav.Link className={styles.navLink}>
+            <div className={styles.navIconContainer}>
+              <FontAwesomeIcon icon={faNewspaper} />
+            </div>
+            <span className={styles.linkText}>My Pages</span>
+          </Nav.Link>
+        </Link>
+      </Nav.Item>
+
+      <Nav.Item as="li" className={styles.sidenavItem}>
+        <Link href='/explorepages' passHref>
+          <Nav.Link className={styles.navLink}>
+            <div className={styles.navIconContainer}>
+              <FontAwesomeIcon icon={faNewspaper} />
+            </div>
+            <span className={styles.linkText}>Explore Pages</span>
+          </Nav.Link>
+        </Link>
+      </Nav.Item>
+
+      {/* <Nav.Item as="li" className={styles.sidenavItem}>
         <Link href="/" passHref>
           <Nav.Link href="#" className={styles.navLink}>
             <div className={styles.navIconContainer}>
@@ -51,10 +74,10 @@ export default function LeftSideNav() {
             <span className={styles.linkText}>feature2</span>
           </Nav.Link>
         </Link>
-      </Nav.Item>
+      </Nav.Item> */}
       
       <Nav.Item as="li" className={styles.sidenavItem}>
-        <Link href="/" passHref>
+        <Link href="/notifications" passHref>
           <Nav.Link href="#" className={styles.navLink}>
             <div className={styles.navIconContainer}>
               <FontAwesomeIcon icon={faAt} />
@@ -65,7 +88,7 @@ export default function LeftSideNav() {
       </Nav.Item>
       
       <Nav.Item as="li" className={styles.sidenavItem}>
-        <Link href="/" passHref>
+        <Link href="/explore" passHref>
           <Nav.Link href="#" className={styles.navLink}>
             <div className={styles.navIconContainer}>
               <FontAwesomeIcon icon={faSearch} />
@@ -76,7 +99,7 @@ export default function LeftSideNav() {
       </Nav.Item>
       
       <Nav.Item as="li" className={styles.sidenavItem}>
-        <Link href="/" passHref>
+        <Link href="/messages" passHref>
           <Nav.Link href="#" className={styles.navLink}>
             <div className={styles.navIconContainer}>
               <FontAwesomeIcon icon={faEnvelope} />
@@ -88,6 +111,11 @@ export default function LeftSideNav() {
       <Link href="/newpost" passHref>
         <Button size='lg' className={styles.postButton}>
           Post
+        </Button>
+      </Link>
+      <Link href="/newpage" passHref>
+        <Button size='lg' className={styles.createPageButton}>
+          Create Page
         </Button>
       </Link>
     </>
@@ -111,7 +139,7 @@ export default function LeftSideNav() {
     <Nav defaultActiveKey="/home" className={`flex-column ${styles.nav}`}>
       {user !== null && isAuthenticated !== false ? authLinks() : guestLinks()}
       
-      <Nav.Item as="li" className={styles.sidenavItem}>
+      {/* <Nav.Item as="li" className={styles.sidenavItem}>
         <Link href="/" passHref>
           <Nav.Link href="#" className={styles.navLink}>
             <div className={styles.navIconContainer}>
@@ -120,7 +148,7 @@ export default function LeftSideNav() {
             <span className={styles.linkText}>example</span>
           </Nav.Link>
         </Link>
-      </Nav.Item>
+      </Nav.Item> */}
 
     </Nav>
   );
